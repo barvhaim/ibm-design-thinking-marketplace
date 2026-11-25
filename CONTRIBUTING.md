@@ -21,6 +21,7 @@ plugins/<plugin>/
 - **Shared files.** Edit files in `/shared`, then run `scripts/sync-shared.sh`. Skills reference their plugin's copy as `${CLAUDE_PLUGIN_ROOT}/shared/…`.
 - **New plugins.** When you add a plugin, add its entry to `.claude-plugin/marketplace.json`. Keep the entry's `name` the same as the `name` in `plugin.json`.
 - **Checks.** After every change, run `claude plugin validate .` and `scripts/sync-shared.sh --check`.
+- **Docs site.** `scripts/build-site.py` generates the GitHub Pages site from the SKILL.md files, so a new skill gets its page automatically. It takes plugin labels and skill order from the Plugins table in README.md, so add every new skill there.
 
 ## Conventions every skill follows
 
