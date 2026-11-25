@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- Source of assets/social-card.png (1200x630), the Open Graph image for the docs site and repo.
+     Re-render with headless Chrome:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+       --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=5000 \
+       --screenshot=assets/social-card.png file://$PWD/assets/social-card.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Social card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Sans:wght@300;400;600&display=block">
+<style>
+  :root {
+    --wall: #eef0f3; --paper: #ffffff; --ink: #161a20; --ink-2: #535a66; --line: #d4d9e1;
+    --n-ev: #fff0a3; --n-ev-ink: #3b3000; --n-sim: #e7e0ff; --n-sim-ink: #2b1f66; --n-sim-edge: #7a64d4;
+    --n-as: #ffdaea; --n-as-ink: #5a0d2e; --n-q: #d3effc; --n-q-ink: #06394f;
+  }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: var(--wall); color: var(--ink); }
+  body { font-family: "IBM Plex Sans", system-ui, sans-serif; display: grid; grid-template-columns: 640px 1fr; }
+  .left { background: var(--paper); border-right: 1px solid var(--line); padding: 64px 56px 52px 64px; display: grid; grid-template-rows: auto 1fr auto; }
+  .eyebrow { font: 600 17px/1 "IBM Plex Sans Condensed", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 22px; }
+  h1 { font-weight: 300; font-size: 56px; line-height: 1.07; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+  .sub { font-size: 23px; line-height: 1.4; color: var(--ink-2); margin: 24px 0 0; }
+  .sub b { color: var(--ink); font-weight: 600; }
+  .foot { display: grid; gap: 18px; }
+  .icons { display: flex; gap: 10px; }
+  .icons img { width: 40px; height: 40px; border-radius: 9px; display: block; }
+  .url { font: 400 17px/1 "IBM Plex Mono", monospace; color: var(--ink-2); }
+  .right { position: relative; padding: 70px 52px 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-content: start; }
+  .note { padding: 16px 16px 18px; border-radius: 4px; font-size: 19px; line-height: 1.35; display: grid; gap: 10px; box-shadow: 0 1px 0 rgb(20 24 32 / .06), 0 4px 12px rgb(20 24 32 / .12); }
+  .note .k { font: 600 13px/1 "IBM Plex Sans Condensed", sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+  .note .s { font: 400 13px/1.2 "IBM Plex Mono", monospace; opacity: .8; }
+  .ev { background: var(--n-ev); color: var(--n-ev-ink); rotate: -1.5deg; }
+  .sim { background: var(--n-sim); color: var(--n-sim-ink); outline: 2px dashed var(--n-sim-edge); outline-offset: -7px; rotate: 1.2deg; margin-top: 26px; }
+  .as { background: var(--n-as); color: var(--n-as-ink); rotate: .8deg; }
+  .q { background: var(--n-q); color: var(--n-q-ink); rotate: -1deg; margin-top: 26px; }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div>
+      <p class="eyebrow">Claude Code plugin marketplace</p>
+      <h1>IBM Enterprise Design Thinking skills for Claude Code</h1>
+      <p class="sub"><b>34 skills</b> that run each toolkit activity with simulated users, label what's simulated, and save the result as an HTML page.</p>
+    </div>
+    <div></div>
+    <div class="foot">
+      <div class="icons">
+        <img src="icons/edt-core.svg" alt=""><img src="icons/edt-gather.svg" alt=""><img src="icons/edt-synthesize.svg" alt=""><img src="icons/edt-plan.svg" alt="">
+        <img src="icons/edt-ideate.svg" alt=""><img src="icons/edt-test.svg" alt=""><img src="icons/edt-align.svg" alt=""><img src="icons/edt-ai.svg" alt="">
+      </div>
+      <div class="url">barvhaim.github.io/ibm-design-thinking-marketplace</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="note ev"><span class="k">Evidence</span><span>“Half our PRs have no label, so everything lands in Other.”</span><span class="s">N1 · S2</span></div>
+    <div class="note sim"><span class="k">Simulated</span><span>“Other is where PRs go to die.”</span><span class="s">N2 · SU-3</span></div>
+    <div class="note as"><span class="k">Assumption</span><span>Pushing authors harder would cost goodwill they need on release day.</span><span class="s">N11 · Team</span></div>
+    <div class="note q"><span class="k">Question</span><span>Can a release engineer require labels before merge, or only ask?</span><span class="s">N13 · Open</span></div>
+  </div>
+</body>
+</html>

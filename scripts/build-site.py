@@ -23,6 +23,10 @@ OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / "_site"
 REPO = "https://github.com/barvhaim/ibm-design-thinking-marketplace"
 BLOB = REPO + "/blob/master/"
 REPO_SLUG = REPO.split("github.com/")[1]
+SITE = "https://barvhaim.github.io/ibm-design-thinking-marketplace/"
+SITE_NAME = "EDT skills for Claude Code"
+CARD_ALT = ("IBM Enterprise Design Thinking skills for Claude Code: 34 skills that run each toolkit activity "
+            "with simulated users, beside four sticky notes tagged Evidence, Simulated, Assumption and Question")
 MARKETPLACE = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text())
 MKT = MARKETPLACE["name"]
 FONTS = ("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500"
@@ -210,6 +214,7 @@ def shell(current, title, description, main, nav=""):
     links = [("index.html#skills", "Skills"), ("guides/simulated-users.html", "Simulated users"),
              ("guides/artifacts.html", "HTML artifacts"), ("index.html#example", "Example")]
     here = ' aria-current="page"'
+    url = SITE + (current[: -len("index.html")] if current.endswith("index.html") else current)
     top = "".join(f'<a href="{r(href)}"{here if href == current else ""}>{label}</a>' for href, label in links)
     return f"""<!doctype html>
 <html lang="en">
@@ -218,6 +223,17 @@ def shell(current, title, description, main, nav=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{SITE_NAME}">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(description)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}img/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{esc(CARD_ALT)}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{r('icons/edt-core.svg')}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -513,11 +529,10 @@ def main():
     (OUT / "icons").mkdir()
     for icon in (ROOT / "assets" / "icons").glob("*.svg"):
         shutil.copy(icon, OUT / "icons" / icon.name)
-    shots = ROOT / "assets" / "screenshots"
-    if shots.exists():
-        (OUT / "img").mkdir()
-        for img in shots.glob("*.png"):
-            shutil.copy(img, OUT / "img" / img.name)
+    (OUT / "img").mkdir()
+    shutil.copy(ROOT / "assets" / "social-card.png", OUT / "img" / "social-card.png")
+    for img in (ROOT / "assets" / "screenshots").glob("*.png"):
+        shutil.copy(img, OUT / "img" / img.name)
     (OUT / ".nojekyll").write_text("")
     pages = sum(1 for _ in OUT.rglob("*.html"))
     print(f"built {pages} pages ({len(ORDERED)} skills) in {OUT}")
