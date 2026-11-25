@@ -2,12 +2,11 @@
 
 This [Claude Code](https://code.claude.com) plugin marketplace turns [IBM Enterprise Design Thinking](https://www.ibm.com/training/enterprise-design-thinking/framework) into skills. It covers the framework (the Principles, the Loop and the Keys) and all 29 activities in the [EDT toolkit](https://www.ibm.com/training/enterprise-design-thinking/toolkit).
 
-Every skill works in two modes:
+## How it works
 
-- **Co-create** (the default): Claude works through the activity with you, using your research notes, transcripts, PRDs or code, and writes the resulting artifact.
-- **Facilitate**: add `facilitate` to the command, and Claude prepares a kit for a live team session. The kit has an agenda with timings, prompts to read aloud, a board layout for a wall or Mural, and a capture template.
-
-The skills share a `design-thinking/` folder in your project, so they build on each other. For example, `/edt-synthesize:needs-statements` reads your empathy maps, and `/edt-plan:hills` reads your needs statements.
+- **Simulated users.** You don't need research access to start. When an activity needs users, Claude builds a panel of distinct simulated personas (`/edt-core:simulated-users`), including skeptics and edge cases. It then interviews, observes and tests with those personas in character. Real research you provide always comes first. Everything a simulated user produces stays labeled *Simulated*, so the team can see what still needs a real user.
+- **HTML artifacts.** Every activity produces an HTML page in `design-thinking/`, laid out like a workshop wall: sticky notes color-coded Evidence, Simulated, Assumption or Question, with a filter for each tag. When your Claude Code session supports artifacts, the page is also published as an artifact you can share. Each page embeds a JSON data block that the next activity reads, so `/edt-synthesize:needs-statements` builds on your empathy maps, and `/edt-plan:hills` builds on your needs statements.
+- **Two modes.** *Co-create* (the default): Claude runs the activity with you. *Facilitate*: add `facilitate` to the command, and Claude prepares a kit page for a live team session, with an agenda, prompts to read aloud and an empty board. Afterwards, Claude turns photos of the wall into the results page.
 
 ## Install
 
@@ -33,7 +32,7 @@ You can also browse and install from inside a session with `/plugin`.
 
 | Plugin | Skills |
 | --- | --- |
-| **edt-core**: the framework | `guide` · `sponsor-users` · `workshop-planner` · `practice-check` |
+| **edt-core**: the framework | `guide` · `simulated-users` · `sponsor-users` · `workshop-planner` · `practice-check` |
 | **edt-gather**: gather user data | `contextual-inquiry` · `interviews` |
 | **edt-synthesize**: synthesize research | `empathy-map` · `as-is-scenario-map` · `needs-statements` · `stakeholder-map` |
 | **edt-plan**: plan your work | `hills` · `assumptions-and-questions` · `prioritization-grid` · `experience-based-roadmap` · `research-plan` · `user-stories` |
@@ -50,10 +49,11 @@ You run a skill as `/<plugin>:<skill>`, for example `/edt-plan:hills`. You don't
 /edt-core:guide we're kicking off a new onboarding experience for data scientists
 ```
 
-The guide works out where you are in the Loop, checks which Keys you're missing, and recommends the next 1–3 activities.
+The guide works out where you are in the Loop, checks which Keys you're missing and how much rests on simulated users, and recommends the next 1–3 activities.
 
 Common paths:
 
+- **Start without users:** `simulated-users` → `interviews` → `empathy-map`
 - **From research to intent:** `empathy-map` → `as-is-scenario-map` → `needs-statements` → `hills` → `playbacks`
 - **From intent to concept:** `big-idea-vignettes` → `prioritization-grid` → `to-be-scenario-map` → `storyboards`
 - **Test:** `paper-prototypes` or `wireframes` → `cognitive-walkthrough` → `feedback-grid`
@@ -67,7 +67,7 @@ claude plugin marketplace add ./              # test locally
 claude plugin install edt-core@ibm-design-thinking
 ```
 
-Run `/reload-plugins` in a session to pick up your edits. For skill conventions and the SKILL.md template, see [CONTRIBUTING.md](CONTRIBUTING.md).
+Run `/reload-plugins` in a session to pick up your edits. The page template and the simulation protocol live in `shared/`. Edit them there, then run `scripts/sync-shared.sh` to copy them into every plugin. For skill conventions and the SKILL.md template, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Attribution
 

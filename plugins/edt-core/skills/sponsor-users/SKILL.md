@@ -1,6 +1,6 @@
 ---
 name: sponsor-users
-description: Find, recruit and work with Sponsor Users, one of the three Keys of IBM Enterprise Design Thinking. Produces a sponsor user profile, a recruiting screener, an outreach message and an engagement plan across the Loop. Use when a team asks "who should our sponsor users be", "how do we recruit users to work with us", or "how do we involve users throughout the project", or has Hills with no real user attached.
+description: Find, recruit and work with Sponsor Users, one of the three Keys of IBM Enterprise Design Thinking. Produces an HTML artifact with sponsor user profiles, a recruiting screener, an outreach message and an engagement plan, prioritized by which simulated findings most need a real user. Use when a team asks "who should our sponsor users be", "how do we recruit users to work with us", or "how do we involve users throughout the project", or has Hills with no real user attached.
 argument-hint: "[target user or Hill]"
 ---
 
@@ -16,11 +16,12 @@ A sponsor user is a real-world user who regularly contributes their domain exper
 - When the team keeps saying "we think users want…" and nobody can check.
 
 ## Inputs
-- From `design-thinking/`: any `hills-*`, `stakeholder-map-*`, `empathy-map-*` or `needs-statements-*` files.
+- From `design-thinking/`: `simulated-users.html` and any `hills-*`, `stakeholder-map-*`, `empathy-map-*` or `needs-statements-*` pages. Read their `#edt-data` blocks.
+- Count the `simulated` items each Hill and key decision depends on. Those dependencies tell you which real people to recruit first.
 - Ask the user for: the target user role(s), the domain, any access constraints (NDA, client approval, internal-only), and how often the team can engage.
 
 ## Co-create with Claude
-1. **Define who.** Draft a profile for each Hill or primary user role covering role, context, experience level, tools, and the decisions they make. Separate the **user** (who does the work) from the **client** or buyer (who pays).
+1. **Define who.** Draft a profile for each Hill or primary user role covering role, context, experience level, tools, and the decisions they make. Start from the matching simulated personas, then say which real person would replace or correct each one. Separate the **user** (who does the work) from the **client** or buyer (who pays).
 2. **Apply the three criteria** to each candidate profile:
    - Do they represent the target user?
    - Are they personally invested in the outcome?
@@ -47,46 +48,21 @@ A sponsor user is a real-world user who regularly contributes their domain exper
 - **Prompt to read aloud:** "Who would be upset if we got this wrong, and could we talk to them every two weeks?"
 
 ## Output
-Save to `design-thinking/sponsor-users-<topic>.md`:
-
-```markdown
-# Sponsor Users: <project>
-
-## Profiles
-| Hill / role | Profile (role, context, experience) | Must have | Nice to have |
-| --- | --- | --- | --- |
-
-## Candidates
-| Name / source | Representative? | Invested? | Available? | Owner | Status |
-| --- | --- | --- | --- | --- | --- |
-
-## Screener
-1. …
-
-## Outreach message
-…
-
-## Engagement plan
-| Loop phase | Activity | Cadence | Next date |
-| --- | --- | --- | --- |
-| Observe | … | | |
-| Reflect | … | | |
-| Make | … | | |
-
-## Logistics and ethics
-- Consent / NDA:
-- Relationship owner:
-- How we close the loop:
-
-## Playback
-- Key takeaways:
-- Assumptions to validate:
-- Next activity:
-```
+Build the page from `${CLAUDE_PLUGIN_ROOT}/shared/artifact-template.html`, following `${CLAUDE_PLUGIN_ROOT}/shared/artifacts.md`, and save it as `design-thinking/sponsor-users-<topic>.html`.
+- **Title:** `<Project> Sponsor Users`.
+- **Sections:**
+  1. **Profiles:** a table with one row per Hill or role: the profile, must-haves, nice-to-haves, and the simulated persona each sponsor user would validate.
+  2. **Why these first:** notes tagged `simulated` or `assumption` for the claims that most need a real user, each citing its page.
+  3. **Candidates:** a table of name or source, the three criteria as pills, owner and status. Use initials or roles only, never personal contact details.
+  4. **Screener and outreach:** an ordered list of screener questions, and the outreach message in a `.note.wide[data-tag="assumption"]`.
+  5. **Engagement plan:** `.cols` for Observe, Reflect and Make, each listing activities, cadence and next date.
+  6. **Logistics and ethics:** consent and NDA, the relationship owner, and how the team will close the loop.
+  7. **Playback.**
+- **`content` in `#edt-data`:** `{ "profiles": [], "priorities": [{"claim": "", "page": "", "tag": "simulated"}], "candidates": [{"ref": "", "criteria": {"representative": true, "invested": null, "available": null}, "owner": "", "status": ""}], "screener": [], "engagement": {"observe": [], "reflect": [], "make": []} }`
 
 ## Quality checks
 - Every Hill has at least one named sponsor user, or a dated plan to recruit one.
-- Sponsor users are real people. Personas don't count.
+- Sponsor users are real people. Simulated personas don't count; they are what sponsor users replace.
 - The engagement recurs. A single interview makes someone a research participant, not a sponsor user.
 - The team has said what it gives back to the sponsor user, not only what it takes.
 

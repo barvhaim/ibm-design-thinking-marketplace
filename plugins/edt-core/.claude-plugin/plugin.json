@@ -1,7 +1,7 @@
 {
   "name": "edt-core",
   "version": "0.1.0",
-  "description": "Enterprise Design Thinking framework: Principles, the Loop, the Keys, Sponsor Users, workshop planning, and a guide that picks the right activity",
+  "description": "Enterprise Design Thinking framework: guide, simulated user panel, Sponsor Users, workshop planning and practice check. Every activity outputs an HTML artifact",
   "author": {
     "name": "barha",
     "email": "barha@il.ibm.com"
@@ -12,10 +12,13 @@
   "keywords": [
     "design-thinking",
     "enterprise-design-thinking",
-    "ibm",
     "framework",
-    "loop",
+    "html-artifacts",
+    "ibm",
     "keys",
+    "loop",
+    "personas",
+    "simulated-users",
     "sponsor-users",
     "workshop"
   ]

@@ -1,10 +1,11 @@
 # Activity catalog
 
-Every activity in the IBM Enterprise Design Thinking toolkit, with the skill that runs it. Times are the toolkit's suggested durations. Treat them as a starting point, since teams usually run long. The source decks are at [ibm.com/training/enterprise-design-thinking/toolkit](https://www.ibm.com/training/enterprise-design-thinking/toolkit).
+Every activity in the IBM Enterprise Design Thinking toolkit, with the skill that runs it. Times are the toolkit's suggested durations. Treat them as a starting point, since teams usually run long. Every activity produces an HTML artifact in `design-thinking/`, and any activity that needs users can run with simulated users. The source decks are at [ibm.com/training/enterprise-design-thinking/toolkit](https://www.ibm.com/training/enterprise-design-thinking/toolkit).
 
 | Category | Activity | Purpose | Time | Command |
 | --- | --- | --- | --- | --- |
 | Framework | Guide | Explain EDT and pick the next activity | — | `/edt-core:guide` |
+| Framework | Simulated Users | Build the shared panel of simulated users that activities role-play | ~20 min | `/edt-core:simulated-users` |
 | Framework | Sponsor Users | Recruit and engage real users across the Loop | ~45 min | `/edt-core:sponsor-users` |
 | Framework | Workshop Planner | Chain activities into a session agenda | 30–60 min | `/edt-core:workshop-planner` |
 | Framework | Practice Check | Audit a project against the Principles, the Loop and the Keys | ~20 min | `/edt-core:practice-check` |

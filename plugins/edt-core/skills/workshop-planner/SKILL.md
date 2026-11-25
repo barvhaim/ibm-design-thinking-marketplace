@@ -1,6 +1,6 @@
 ---
 name: workshop-planner
-description: Plan an IBM Enterprise Design Thinking workshop that chains several toolkit activities, from a 90-minute session to a multi-day event. Produces an agenda with timings, goals, a participant and role plan, materials, a board setup (wall or Mural) and a pre-work and follow-up checklist. Use when someone says "plan a design thinking workshop", "build an agenda", "we have a day with the team", "run a kickoff", or "facilitate a design jam".
+description: Plan an IBM Enterprise Design Thinking workshop that chains several toolkit activities, from a 90-minute session to a multi-day event. Produces an HTML artifact with an agenda and timings, roles, materials, a board setup (wall or Mural), pre-work, follow-up, and simulated-user seed material for each board. Use when someone says "plan a design thinking workshop", "build an agenda", "we have a day with the team", "run a kickoff", or "facilitate a design jam".
 argument-hint: "[goal] [duration] [in-person|remote]"
 ---
 
@@ -38,10 +38,11 @@ A good EDT workshop moves through the Loop with a purpose: it observes or brings
 5. **Plan materials and the board.**
    - **In person:** sticky notes, Sharpies, dot stickers, large paper, painter's tape, a timer.
    - **Remote:** one board, with a frame per activity laid out left to right in agenda order. Also prepare a parking lot frame and a norms frame.
-6. **Write pre-work and follow-up.**
+6. **Seed with simulated users.** If real users can't attend, plan where simulated users come in: printed persona cards from `design-thinking/simulated-users.html`, and simulated notes pre-posted on boards (in a distinct sticky color) for the team to react to and challenge. Never let them stand in silently for the real users the agenda claims to involve.
+7. **Write pre-work and follow-up.**
    - **Pre-work:** research readouts, invitations, any homework.
    - **Follow-up:** digitize the walls into `design-thinking/`, assign owners, and schedule the next playback.
-7. **Generate the kits.** For each activity, offer to run its skill in `facilitate` mode, for example `/edt-synthesize:empathy-map facilitate`, to get prompts and detailed steps.
+8. **Generate the kits.** For each activity, offer to run its skill in `facilitate` mode, for example `/edt-synthesize:empathy-map facilitate`, to get prompts and detailed steps.
 
 ## Typical chains
 
@@ -56,37 +57,18 @@ A good EDT workshop moves through the Loop with a purpose: it observes or brings
 | Full design jam (3 days) | Day 1: from research to intent · Day 2: from intent to concept · Day 3: test and iterate, then roadmap |
 
 ## Output
-Save to `design-thinking/workshop-plan-<topic>.md`:
-
-```markdown
-# Workshop: <title>
-**Outcome:** By the end, we will have …
-**When / where:** … · **Format:** in-person | remote (<tool>)
-**Participants:** … · **Facilitator:** … · **Decision-maker:** …
-
-## Agenda
-| Time | Block | Activity / command | Output | Owner |
-| --- | --- | --- | --- | --- |
-| 09:00 | Opening | Norms, Hopes and Fears (`/edt-align:hopes-and-fears`) | Shared expectations | |
-
-## Norms
-Write before you talk · There are no bad ideas: diverge, then converge · Stay focused on users · Everyone participates · Use the parking lot · Yes, and…
-
-## Materials and board
-- …
-
-## Pre-work
-- [ ] …
-
-## Follow-up
-- [ ] Digitize outputs into `design-thinking/`
-- [ ] Next playback: <date>
-
-## Playback
-- What the workshop should prove:
-- Risks (time, missing people, missing evidence):
-- Next activity after the workshop:
-```
+Build the page from `${CLAUDE_PLUGIN_ROOT}/shared/artifact-template.html`, following `${CLAUDE_PLUGIN_ROOT}/shared/artifacts.md`, and save it as `design-thinking/workshop-plan-<topic>.html`.
+- **Title:** `<Workshop name> Plan`.
+- **Sections:**
+  1. **Outcome:** a `.stmt` that reads "By the end, we will have …", with `.meta`-style facts for when, where, format, participants, facilitator and decision-maker.
+  2. **Agenda:** a table of time, block, activity and command (`.cmd`), output and owner. Mark breaks and the closing playback.
+  3. **The chain:** `.frames`, one per activity in order, showing what each one hands to the next.
+  4. **Norms:** write before you talk · there are no bad ideas, so diverge then converge · stay focused on users · everyone participates · use the parking lot · yes, and…
+  5. **People and simulated users:** a table of roles, plus the persona cards to print (`.personas`), if any.
+  6. **Materials and board:** a list, plus the board layout for each activity using the same board components.
+  7. **Pre-work and follow-up:** checklists.
+  8. **Playback:** what the workshop should prove, its risks, and the next activity.
+- **`content` in `#edt-data`:** `{ "outcome": "", "agenda": [{"time": "", "block": "", "command": "", "output": "", "owner": ""}], "participants": [], "simulated_seed": ["SU-1"], "materials": [], "prework": [], "followup": [] }`
 
 ## Quality checks
 - The agenda includes Observe or evidence, Reflect, and Make. If it's all discussion, add a Make activity.

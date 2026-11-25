@@ -1,50 +1,61 @@
 # Authoring skills for this marketplace
 
-Each IBM Enterprise Design Thinking (EDT) toolkit activity is one Claude Code skill. Every skill follows the same shape so they read as one toolkit and can hand work to each other.
+Each IBM Enterprise Design Thinking (EDT) toolkit activity is one Claude Code skill. Every skill follows the same shape, so the skills read as one toolkit and can hand work to each other.
 
 ## Layout
 
 ```
+shared/                       # source of truth, copied into every plugin
+├── artifact-template.html    # the HTML page every activity produces
+├── artifacts.md              # how to build, save, publish and read artifacts, plus a component catalog
+└── simulated-users.md        # the simulated user protocol
 plugins/<plugin>/
 ├── .claude-plugin/plugin.json
+├── shared/                   # copy of /shared; don't edit it here
 └── skills/<skill-name>/
-    ├── SKILL.md          # required, keep under ~200 lines
-    └── examples.md       # optional: a worked example, loaded only when needed
+    ├── SKILL.md              # required; keep it under ~200 lines
+    └── examples.md           # optional worked example, loaded only when needed
 ```
 
-- `<skill-name>` is the activity name in kebab-case (`empathy-map`, `as-is-scenario-map`). The frontmatter `name` matches the folder name.
-- Users invoke a skill as `/<plugin>:<skill-name>`, for example `/edt-synthesize:empathy-map`.
-- When you add a plugin, add its entry to `.claude-plugin/marketplace.json`, and keep the entry `name` the same as the `name` in `plugin.json`.
-- After every change, run `claude plugin validate .`.
+- **Skill names.** `<skill-name>` is the activity's name in kebab-case, such as `empathy-map` or `as-is-scenario-map`. The frontmatter `name` matches the folder name. Users invoke a skill as `/<plugin>:<skill-name>`, for example `/edt-synthesize:empathy-map`.
+- **Shared files.** Edit files in `/shared`, then run `scripts/sync-shared.sh`. Skills reference their plugin's copy as `${CLAUDE_PLUGIN_ROOT}/shared/…`.
+- **New plugins.** When you add a plugin, add its entry to `.claude-plugin/marketplace.json`. Keep the entry's `name` the same as the `name` in `plugin.json`.
+- **Checks.** After every change, run `claude plugin validate .` and `scripts/sync-shared.sh --check`.
 
 ## Conventions every skill follows
 
-1. **Shared workspace.** Skills read and write artifacts in `design-thinking/` at the user's project root. Create the folder if it's missing. Name each artifact `design-thinking/<skill-name>[-<topic-slug>].md`. Before starting, list `design-thinking/` and read any upstream artifacts the activity builds on. For example, Needs Statements reads empathy maps and as-is scenario maps. This shared folder is how activities from different plugins chain together.
-2. **Evidence over invention.** Never invent user research. Tag every item as one of:
-   - **Evidence:** observed or quoted, with its source.
-   - **Assumption:** something the team believes.
-   - **Question:** an open unknown.
+1. **HTML artifacts.** Every activity's output is a self-contained HTML page built from `${CLAUDE_PLUGIN_ROOT}/shared/artifact-template.html`, following `${CLAUDE_PLUGIN_ROOT}/shared/artifacts.md`.
+   - Save it to `design-thinking/<skill-name>-<topic-slug>.html` at the user's project root.
+   - Publish it as an artifact when the session has an Artifact tool.
+   - Use the template's components and don't restyle it.
+   - Every page embeds an `#edt-data` JSON block. The next activity reads that block, not the HTML.
+2. **Simulated users.** When an activity needs users, Claude simulates them. It follows `${CLAUDE_PLUGIN_ROOT}/shared/simulated-users.md`, using or creating the shared panel at `design-thinking/simulated-users.html`, and runs the activity's user-facing steps with those personas. Real research the user provides always comes first, and simulation fills the gaps.
+3. **Provenance on every item.** Each note, dot or pill carries a `data-tag`:
+   - `evidence`: real and observed, with its source
+   - `simulated`: from a simulated user, with the persona ID
+   - `assumption`: something the team believes
+   - `question`: an open unknown
 
-   If inputs are missing, ask for them, or point the user to the activity that would produce them. Write hypothetical examples only when the user asks for them, and label them as hypothetical. You are not your user.
-3. **Two modes.**
-   - **Co-create** (the default): Claude works through the activity with the user in conversation. It draws on workspace artifacts and on any files the user points to, such as transcripts, notes, tickets, analytics or PRDs, and writes the artifact.
-   - **Facilitate:** the user is running a live session with a team. Use this mode when the user mentions a workshop, session or facilitation, or passes `facilitate` as an argument. Claude produces a facilitator kit: an agenda with timings, prompts to read aloud, materials, a board layout that works on a physical wall or a digital whiteboard such as Mural, and a capture template. After the session, Claude digitizes the results into the artifact.
-4. **End with a Playback.** Every artifact ends with a short Playback section. It holds 3–5 key takeaways, the assumptions and questions to validate, and the recommended next activity.
-5. **Respect the source.** Paraphrase the IBM toolkit decks instead of pasting their text, and link the source deck in each skill.
-6. **Cross-reference by command.** Point to related activities by their slash command (`/edt-plan:hills`), so users can see they exist even if they haven't installed that plugin yet.
+   Simulated items never become evidence. The simulated banner stays on any page that contains them.
+4. **Two modes.**
+   - **Co-create** is the default. Claude runs the whole activity with the user, using the workspace, the files the user points to, and simulated users.
+   - **Facilitate** applies when the user mentions a workshop or session, or passes `facilitate`. Claude produces a facilitator kit page with an agenda, prompts, materials and an empty board. After the session, it turns photos or exports into the results page.
+5. **End with a Playback.** Every page ends with three parts: key takeaways, what to validate next (simulated and assumed claims first), and the recommended next activity.
+6. **Respect the source.** Paraphrase the IBM toolkit decks instead of pasting them, and link the deck in the skill and on the page.
+7. **Cross-reference by command.** Point to other activities by their slash command, such as `/edt-plan:hills`.
 
 ## SKILL.md template
 
 ````markdown
 ---
 name: <skill-name>
-description: <One or two sentences. What the activity produces, then "Use when …" with concrete triggers, phrases and situations. ≤ 500 characters.>
+description: <One or two sentences: what the activity produces (an HTML artifact), then "Use when …" with concrete triggers. 500 characters or fewer.>
 argument-hint: "[topic or user] [facilitate]"
 ---
 
 # <Activity Name>
 
-> IBM Enterprise Design Thinking · <Toolkit category> · <Loop phase(s): Observe / Reflect / Make> · ~<N> min
+> IBM Enterprise Design Thinking · <Toolkit category> · <Loop phase(s)> · ~<N> min
 
 <Why this activity exists, in one paragraph.>
 
@@ -52,24 +63,24 @@ argument-hint: "[topic or user] [facilitate]"
 - …
 
 ## Inputs
-- Upstream artifacts in `design-thinking/`: …
-- What to ask the user for if missing: …
+- From `design-thinking/`: … (read their `#edt-data` blocks)
+- The simulated user panel, `design-thinking/simulated-users.html`. Create it if it's missing (see `${CLAUDE_PLUGIN_ROOT}/shared/simulated-users.md`).
+- Ask the user only for what you can't infer or simulate: …
 
 ## Co-create with Claude
-1. … (numbered steps that follow the deck's phases, adapted to working with Claude)
+1. … (numbered steps that follow the deck's phases, including where and how simulated users take part)
 
 ## Facilitate a live session
-- Agenda with timings · prompts to read aloud · materials · board layout
+- Agenda with timings · prompts to read aloud · materials · board layout → a kit page
 
 ## Output
-Save to `design-thinking/<skill-name>-<topic>.md` using this template:
-
-```markdown
-… (the artifact template, ending with a ## Playback section)
-```
+Build the page from `${CLAUDE_PLUGIN_ROOT}/shared/artifact-template.html`, following `${CLAUDE_PLUGIN_ROOT}/shared/artifacts.md`, and save it as `design-thinking/<skill-name>-<topic>.html`.
+- **Title:** …
+- **Sections:** … (which components each uses)
+- **`content` in `#edt-data`:** … (the activity's own data shape)
 
 ## Quality checks
-- … (what good looks like, plus common pitfalls)
+- … (what good looks like, plus common pitfalls, including simulation pitfalls)
 
 ## Next
 - `/<plugin>:<skill>`: why it comes next
