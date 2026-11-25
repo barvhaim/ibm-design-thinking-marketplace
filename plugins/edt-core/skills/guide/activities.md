@@ -11,9 +11,9 @@ Every activity in the IBM Enterprise Design Thinking toolkit, with the skill tha
 | Gather user data | Contextual Inquiry | Observe users where they work, to learn how and why they act | ~60 min | `/edt-gather:contextual-inquiry` |
 | Gather user data | Interviews | Talk directly with users or stakeholders | ~60 min | `/edt-gather:interviews` |
 | Synthesize research | Empathy Map | Build shared empathy: Says, Does, Thinks, Feels | 30 min | `/edt-synthesize:empathy-map` |
-| Synthesize research | As-is Scenario Map | Map the user's current experience | {{as-is-scenario-map}} | `/edt-synthesize:as-is-scenario-map` |
-| Synthesize research | Needs Statements | State what users need to reach their goals | {{needs-statements}} | `/edt-synthesize:needs-statements` |
-| Synthesize research | Stakeholder Map | Chart stakeholders, their expectations and their relationships | {{stakeholder-map}} | `/edt-synthesize:stakeholder-map` |
+| Synthesize research | As-is Scenario Map | Map the user's current experience | ~30 min | `/edt-synthesize:as-is-scenario-map` |
+| Synthesize research | Needs Statements | State what users need to reach their goals | ~30 min | `/edt-synthesize:needs-statements` |
+| Synthesize research | Stakeholder Map | Chart stakeholders, their expectations and their relationships | ~30 min | `/edt-synthesize:stakeholder-map` |
 | Plan your work | Hills | Write intent as user outcomes: Who, What, Wow | ~60 min | `/edt-plan:hills` |
 | Plan your work | Assumptions and Questions | Surface assumptions and plan how to test them | ~30 min | `/edt-plan:assumptions-and-questions` |
 | Plan your work | Prioritization Grid | Weigh importance against feasibility | ~30 min | `/edt-plan:prioritization-grid` |

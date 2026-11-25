@@ -69,13 +69,17 @@ What a team knows about its users is usually scattered across interview notes, s
 **Board layout (wall or Mural):**
 
 ```
-┌───────────────┬───────────────┐
-│     SAYS      │    THINKS     │
-│          ( user: name,        │
-├───────────── role, context ) ─┤
-│     DOES      │     FEELS     │
-└───────────────┴───────────────┘
-legend: plain = Evidence · ? = Assumption / Question      parking lot →
+┌───────────────────┬───────────────────┐
+│ SAYS              │            THINKS │
+│                   │                   │
+│           ┌───────┴───────┐           │
+├───────────┤   user: name  ├───────────┤
+│           │ role, context │           │
+│           └───────┬───────┘           │
+│                   │                   │
+│ DOES              │             FEELS │
+└───────────────────┴───────────────────┘
+Legend: plain note = Evidence · "?" = Assumption or Question · parking lot beside the grid
 ```
 
 **Afterwards:** give Claude a photo of the wall or the Mural export. Claude digitizes it and keeps the tags.
