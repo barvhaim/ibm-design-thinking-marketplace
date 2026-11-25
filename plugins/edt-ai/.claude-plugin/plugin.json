@@ -1,0 +1,21 @@
+{
+  "name": "edt-ai",
+  "version": "0.1.0",
+  "description": "Define your AI strategy with AI Essentials: Intent, Data, Understanding, Reasoning, Knowledge",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "ai",
+    "ai-essentials",
+    "strategy",
+    "ethics"
+  ]
+}

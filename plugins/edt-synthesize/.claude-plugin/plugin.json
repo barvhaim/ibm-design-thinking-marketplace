@@ -1,0 +1,22 @@
+{
+  "name": "edt-synthesize",
+  "version": "0.1.0",
+  "description": "Synthesize research: Empathy Map, As-is Scenario Map, Needs Statements, Stakeholder Map",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "synthesis",
+    "empathy-map",
+    "scenario-map",
+    "needs",
+    "stakeholders"
+  ]
+}

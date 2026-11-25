@@ -1,0 +1,21 @@
+{
+  "name": "edt-align",
+  "version": "0.1.0",
+  "description": "Align your team: Playbacks, Hopes and Fears, Daily Syncs, Retrospectives",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "playbacks",
+    "alignment",
+    "retrospectives",
+    "team"
+  ]
+}

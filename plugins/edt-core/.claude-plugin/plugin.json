@@ -1,0 +1,22 @@
+{
+  "name": "edt-core",
+  "version": "0.1.0",
+  "description": "Enterprise Design Thinking framework: Principles, the Loop, the Keys, Sponsor Users, workshop planning, and a guide that picks the right activity",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "framework",
+    "loop",
+    "keys",
+    "sponsor-users",
+    "workshop"
+  ]
+}

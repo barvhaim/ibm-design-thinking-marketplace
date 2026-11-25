@@ -1,0 +1,22 @@
+{
+  "name": "edt-plan",
+  "version": "0.1.0",
+  "description": "Plan your work: Hills, Assumptions and Questions, Prioritization Grid, Experience-based Roadmap, Research Plan, User Stories",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "hills",
+    "prioritization",
+    "roadmap",
+    "assumptions",
+    "user-stories"
+  ]
+}

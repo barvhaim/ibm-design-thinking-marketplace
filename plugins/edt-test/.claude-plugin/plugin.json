@@ -1,0 +1,21 @@
+{
+  "name": "edt-test",
+  "version": "0.1.0",
+  "description": "Test your ideas: Feedback Grid, Cognitive Walkthrough, Paper Prototypes, Wireframes",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "testing",
+    "prototyping",
+    "feedback",
+    "wireframes"
+  ]
+}

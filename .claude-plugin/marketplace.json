@@ -1,0 +1,50 @@
+{
+  "name": "ibm-design-thinking",
+  "description": "Skills for IBM Enterprise Design Thinking: the Loop, the Keys, and the toolkit activities",
+  "owner": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "plugins": [
+    {
+      "name": "edt-core",
+      "source": "./plugins/edt-core",
+      "description": "Enterprise Design Thinking framework: Principles, the Loop, the Keys, Sponsor Users, workshop planning, and a guide that picks the right activity"
+    },
+    {
+      "name": "edt-gather",
+      "source": "./plugins/edt-gather",
+      "description": "Gather user data: Contextual Inquiry and Interviews"
+    },
+    {
+      "name": "edt-synthesize",
+      "source": "./plugins/edt-synthesize",
+      "description": "Synthesize research: Empathy Map, As-is Scenario Map, Needs Statements, Stakeholder Map"
+    },
+    {
+      "name": "edt-plan",
+      "source": "./plugins/edt-plan",
+      "description": "Plan your work: Hills, Assumptions and Questions, Prioritization Grid, Experience-based Roadmap, Research Plan, User Stories"
+    },
+    {
+      "name": "edt-ideate",
+      "source": "./plugins/edt-ideate",
+      "description": "Generate new ideas: Big Idea Vignettes, To-be Scenario Map, Storyboards, Speculative Design Stories"
+    },
+    {
+      "name": "edt-test",
+      "source": "./plugins/edt-test",
+      "description": "Test your ideas: Feedback Grid, Cognitive Walkthrough, Paper Prototypes, Wireframes"
+    },
+    {
+      "name": "edt-align",
+      "source": "./plugins/edt-align",
+      "description": "Align your team: Playbacks, Hopes and Fears, Daily Syncs, Retrospectives"
+    },
+    {
+      "name": "edt-ai",
+      "source": "./plugins/edt-ai",
+      "description": "Define your AI strategy with AI Essentials: Intent, Data, Understanding, Reasoning, Knowledge"
+    }
+  ]
+}

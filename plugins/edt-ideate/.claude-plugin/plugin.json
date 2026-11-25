@@ -1,0 +1,21 @@
+{
+  "name": "edt-ideate",
+  "version": "0.1.0",
+  "description": "Generate new ideas: Big Idea Vignettes, To-be Scenario Map, Storyboards, Speculative Design Stories",
+  "author": {
+    "name": "barha",
+    "email": "barha@il.ibm.com"
+  },
+  "homepage": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "repository": "https://github.com/barvhaim/ibm-design-thinking-marketplace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-thinking",
+    "enterprise-design-thinking",
+    "ibm",
+    "ideation",
+    "storyboards",
+    "scenario-map",
+    "speculative-design"
+  ]
+}
